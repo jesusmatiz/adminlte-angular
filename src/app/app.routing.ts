@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router"
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
+import { AuthGuard } from "./pages/guard/auth.guard";
 import { LoginComponent } from "./pages/login/login.component";
 import { PagesComponent } from "./pages/pages.component";
 import { RegisterComponent } from "./pages/register/register.component";
@@ -12,6 +13,7 @@ export const routes: Routes = [{
   children: [
     {
       path: '',
+      canActivate: [AuthGuard],
       loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
     }
   ]
